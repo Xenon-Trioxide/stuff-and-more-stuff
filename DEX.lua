@@ -1281,8 +1281,8 @@ local function main()
 		end})
 
 		context:Register("VIEW_SCRIPT",{Name = "View Script", IconMap = Explorer.MiscIcons, Icon = "ViewScript", OnClick = function()
-			local scr = selection.List[1] and selection.List[1].Obj
-			if scr then ScriptViewer.ViewScript(scr) end
+			local scr = selection.List[1].Obj
+			if selection.List[1] and scr then ScriptViewer.ViewScript(scr) end
 		end})
 
 		context:Register("SELECT_CHARACTER",{Name = "Select Character", IconMap = Explorer.ClassIcons, Icon = 9, OnClick = function()
