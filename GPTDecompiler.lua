@@ -30,7 +30,7 @@ local api = {}; do
     api.post = post;
 end
 
-loadstring(api.get("https://raw.githubusercontent.com/dPw4hqVLC576BrasAT3DKJzp/decompiler/main/utils/disassembler.lua"))()
+loadstring(api.get("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/Disassembler.lua"))()
 
 function decompiler:decompile(path)
     local res = post({
