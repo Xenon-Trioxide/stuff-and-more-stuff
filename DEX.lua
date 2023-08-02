@@ -4218,11 +4218,17 @@ local function main()
 	local PreviousScr = nil
 
 	ScriptViewer.ViewScript = function(scr)
-    codeFrame:SetText("-- DEXploit - Decompiling, this could take up to a minute.")
+		window:Show()
+    		codeFrame:SetText("-- DEXploit - Decompiling, this could take up to a minute.")
 		local success, source = pcall(decompiler:decompile(scr))
+		local timeoutlimit = 120
+		for i=1,timeoutlimit do
+			wait(1)
+			if success then break end
+		end
+			
 		if not success or not source then source, PreviousScr = "-- DEXploit - Source failed to decompile", nil else PreviousScr = scr end
 		codeFrame:SetText(source)
-		window:Show()
 	end
 
 	ScriptViewer.Init = function()
