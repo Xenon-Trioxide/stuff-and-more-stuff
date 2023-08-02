@@ -46,7 +46,7 @@ function decompiler:decompile(path)
     });
     
     local decoded_response = json_decode(res.Body);
-    local real_res = (decoded_response.choices and decoded_response.choices[1].message.content or "failed to decompile");
+    local real_res = (decoded_response.choices and decoded_response.choices[1].message.content or nil);
 	
     return real_res;
 end
