@@ -31,10 +31,10 @@ function keymodule:CheckKey()
     	wait(2)
     	copyelement.Text = "Copy link"
     end)
-    local urlbox, urlelement = keytab:CreateTextbox("Url (manual copy):",function()
+    local urlbox, _, urlelement = keytab:CreateTextbox("Url (manual copy):",function()
     end,url)
-    urlelement.TextBox.ClearTextOnFocus = false
-    urlelement.TextBox.Text = "https://link-target.net/854230/xploit-checkpoint-1"
+    urlelement.ClearTextOnFocus = false
+    urlelement.Text = "https://link-target.net/854230/xploit-checkpoint-1"
     
         repeat wait() until keycorrect
         print("works")
