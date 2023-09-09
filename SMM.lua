@@ -25,11 +25,8 @@ function keymodule:CheckKey()
           	    local keylabel = keytab:CreateLabel("Key invalid")
             end
         end)
-    local copybutton, copyelement = tab:CreateButton("Copy link",function()
+    local copybutton = tab:CreateButton("Copy link",function()
     	setclipboard("https://link-target.net/854230/xploit-checkpoint-1")
-    	copyelement.Text = "Copied!"
-    	wait(2)
-    	copyelement.Text = "Copy link"
     end)
     local urlbox,urlelement = tab:CreateTextbox("Url (manual copy):",function()
     end,url)
