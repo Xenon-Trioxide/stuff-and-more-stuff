@@ -33,8 +33,8 @@ function keymodule:CheckKey()
     end)
     local urlbox, urlelement = keytab:CreateTextbox("Url (manual copy):",function()
     end,url)
-    urlelement.ClearTextOnFocus = false
-    urlelement.Text = "https://link-target.net/854230/xploit-checkpoint-1"
+    urlelement.TextBox.ClearTextOnFocus = false
+    urlelement.TextBox.Text = "https://link-target.net/854230/xploit-checkpoint-1"
     
         repeat wait() until keycorrect
         print("works")
