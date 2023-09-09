@@ -16,8 +16,8 @@ function keymodule:CheckKey()
             keyval = val
         end)
         local summit = keytab:CreateButton("Summit", function()
-            print(string.sub(http:JSONDecode(keydata).content.rendered,4,35))
-            if keyval == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then
+            print(string.sub(http:JSONDecode(keydata).content.rendered,5,35))
+            if keyval == string.sub(http:JSONDecode(keydata).content.rendered,5,35) then
                 keycorrect = true
                 writefile("xploit-key.txt",keyval)
                 keywindow:Destroy()
