@@ -325,14 +325,18 @@ function main()
 			end
 			--workspace.Map.BossFolder.Boss
 			while toggles.autofarmtoggle and wait() do
-				if toggles.farmbosstoggle then
+				local boss = workspace.Map:FindFirstChild("Boss",true)
+				if toggles.farmbosstoggle and boss and boss:FindFirstChild("Humanoid") then
+					SpawnExplosion(boss:FindFirstChild("Head"))
+				end
+				--[[if toggles.farmbosstoggle then
 					workspace.Map.DescendantAdded:Connect(function(descendant)
 						while descendant.Name == "Boss" and descendant:FindFirstChild("Humanoid") do
 							wait(0.1)
 						    SpawnExplosion(descendant:FindFirstChild("Head"))
 						end
 					end)
-				end
+				end]]
 				
 				for i,v in pairs(zombies) do
 					while v and v:FindFirstChild("Humanoid") and character and v.Humanoid.Health > 0 and deployed do
