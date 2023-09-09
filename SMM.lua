@@ -13,7 +13,7 @@ function keymodule:CheckKey()
         local keywindow = library:CreateWindow("Please insert key")
         local keytab = keywindow:CreateTab("Key")
         local keyinput = keytab:CreateTextbox("Insert key", function(val)
-            keyval = val.."\n"
+            keyval = val
         end)
         local summit = keytab:CreateButton("Summit", function()
             print(string.sub(http:JSONDecode(keydata).content.rendered,4,36))
