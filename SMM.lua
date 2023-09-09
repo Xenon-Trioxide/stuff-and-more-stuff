@@ -7,7 +7,7 @@ local keyval = ""
 
 function keymodule:CheckKey()
     local keycorrect = false
-    if isfile("xploit-key.txt") and readfile("xploit-key.txt") == http:JSONDecode(keydata).content.rendered then 
+    if isfile("xploit-key.txt") and readfile("xploit-key.txt") == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then 
         return true
     else
         local keywindow = library:CreateWindow("Please insert key")
@@ -16,7 +16,6 @@ function keymodule:CheckKey()
             keyval = val
         end)
         local summit = keytab:CreateButton("Summit", function()
-            print(string.sub(http:JSONDecode(keydata).content.rendered,4,35))
             if keyval == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then
                 keycorrect = true
                 writefile("xploit-key.txt",keyval)
