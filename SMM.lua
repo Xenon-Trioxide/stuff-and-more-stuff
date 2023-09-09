@@ -49,32 +49,36 @@ function Task:copyURL()
     local URL = URLBase:format(self.API_HOST, self.task.id)
     return setclipboard(URL)
 end
-
-local nTask = Task.new(API_HOST, LINKVERTISE_ID, LINKVERTISE_COUNT, TOKEN_EXPIRE_TIME); nTask:create()
-local Verified = false
-
-Iris:Connect(function()
-    if not Verified then
-        Iris.Window({Title, [Iris.Args.Window.NoClose] = true, [Iris.Args.Window.NoResize] = true, [Iris.Args.Window.NoScrollbar] = true, [Iris.Args.Window.NoCollapse] = true}, {size = Iris.State(Vector2.new(375, 60))}) do
-            Iris.SameLine() do
-                if Iris.Button({"I have visited the website."}).clicked then
-                    task.spawn(function()
-                        Verified = nTask:verify()
-                    end)
-                end
-                if Iris.Button({"Copy Website"}).clicked then
-                    nTask:copyURL()
+function Task:Main()
+    local nTask = Task.new(API_HOST, LINKVERTISE_ID, LINKVERTISE_COUNT, TOKEN_EXPIRE_TIME); nTask:create()
+    local Verified = false
+    
+    Iris:Connect(function()
+        if not Verified then
+            Iris.Window({Title, [Iris.Args.Window.NoClose] = true, [Iris.Args.Window.NoResize] = true, [Iris.Args.Window.NoScrollbar] = true, [Iris.Args.Window.NoCollapse] = true}, {size = Iris.State(Vector2.new(375, 60))}) do
+                Iris.SameLine() do
+                    if Iris.Button({"I have visited the website."}).clicked then
+                        task.spawn(function()
+                            Verified = nTask:verify()
+                        end)
+                    end
+                    if Iris.Button({"Copy Website"}).clicked then
+                        nTask:copyURL()
+                    end
+                    Iris.End()
                 end
                 Iris.End()
             end
-            Iris.End()
         end
-    end
-end)
-
-repeat task.wait() until Verified
+    end)
+    
+    repeat task.wait() until Verified
+    return true
+end
 
 warn("Verified website at", nTask.data.timestamp)
 warn("Finished at", os.date("%c"))
 warn("Authentication Token", nTask.data.token)
 warn("Authentication Token Expire Time", TOKEN_EXPIRE_TIME)
+
+return Task
