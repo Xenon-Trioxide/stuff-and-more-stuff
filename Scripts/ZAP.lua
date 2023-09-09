@@ -1,4 +1,4 @@
-local nokey = true --Change this to true to remove key system
+local nokey = false --Change this to true to remove key system
 local lplayer = game.Players.LocalPlayer
 
 local _, library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/XploitSDS/XploitHub/main/XPloitHubLibrary.lua")))
@@ -601,7 +601,7 @@ end
 if nokey then
 	main()
 else
-	local _, keysys = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/XploitSDS/Xploit-Scripts-Warehouse/main/Additional_setup")))
+	local _, keysys = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/SMM.lua")))
 	if keysys:CheckKey() then
 	    main()
 	end
