@@ -1,5 +1,5 @@
 local HTTP = game:GetService("HttpService")
-local module = {
+local module = { -- customizable parameters fpr chatgpt (can be changed anytime)
         endpoint = "https://ai.fakeopen.com/v1/chat/completions",
         key = "pk-this-is-a-real-free-pool-token-for-everyone",
         payload = {
@@ -13,14 +13,14 @@ local module = {
         },
         
         temperature = 1,
-        max_tokens = 4000, --150
+        max_tokens = 4000,
         top_p = 1,
         frequency_penalty = 0,
         presence_penalty = 0
         }
 }
 
-function module:MakeRequest()
+function module:MakeRequest() -- returns decoded completion message
         return HTTP:JSONDecode(request({
                 Url = module.endpoint,
                 Method = "POST",
@@ -32,7 +32,7 @@ function module:MakeRequest()
         }))
 end
 
-function module:AddMessage(content,name,role)
+function module:AddMessage(content,name,role) -- add custom message
         table.insert(module.payload.messages,{
                 ["role"] = role or "user", 
                 ["content"] = content,
@@ -40,7 +40,7 @@ function module:AddMessage(content,name,role)
         })
 end
 
-function module:NewChat(initialprompt)
+function module:NewChat(initialprompt) -- make/reset chat with optional initial prompt
         if initialprompt then
                 module.payload.messages = {
                         {
@@ -52,3 +52,5 @@ function module:NewChat(initialprompt)
                 module.payload.messages = {}
         end
 end
+
+return module
