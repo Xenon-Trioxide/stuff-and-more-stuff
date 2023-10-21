@@ -107,7 +107,7 @@ for i,v in pairs(require(game:GetService("ReplicatedStorage").ModuleScripts.Atta
 end
 
 
-local selectedautofarmgun = "M4"
+local selectedautofarmgun = "M16A3"
 local selectedgunforskins = ""
 local selectedgunforattachments = ""
 local selectedskins = {}
@@ -275,7 +275,16 @@ function main()
 
 	--main
 	local label = main:CreateLabel("<font size=\"48\">Welcome!</font>")
-	local label = main:CreateLabel("Zombie Uprising is a pretty cool game", "However, at a certain point it does get a little bit <font color=\"#FF0000\">grindy</font>...\nThe most powerful autofarm for this game up to this point is your average esp and aimbot from April -_-")
+	local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">UPDATE: ZAP is now fixed!</font>",[[So after 3 months of us causing chaos in Zombie Uprising, Brian (the creator) patched ZAP!
+
+What's new:
+- Fixed Autofarm
+- Fixed Bossfarm
+
+The new anti cheat is nothing to worry about! As long as you are careful and play only in private server, you're good to go!
+
+Happy Xploiting!]])
+	--local label = main:CreateLabel("Zombie Uprising is a pretty cool game", "However, at a certain point it does get a little bit <font color=\"#FF0000\">grindy</font>...\nThe most powerful autofarm for this game up to this point is your average esp and aimbot from April -_-")
 	local label = main:CreateLabel("<font size=\"18\">Introducing the <font weight=\"heavy\">Zombie Annihilation Protocol</font>!</font>", "The best GUI in Zombie Uprising! \nFeaturing: \n	- An autofarm <font size=\"5\">duh</font> \n	- Combining guns using <font color=\"#000032\">dark magic</font> \n	- Free skins \n	- Teapot?")
 	
 	--autofarm
