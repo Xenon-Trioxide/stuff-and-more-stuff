@@ -275,7 +275,7 @@ function main()
 
 	--main
 	local label = main:CreateLabel("<font size=\"48\">Welcome!</font>")
-    local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">[9/7/2024] UPDATE: Autofarm is fixed!</font>",[[So after 3 months of us causing chaos in Zombie Uprising, Brian (the creator) patched ZAP!
+    local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">[9/7/2024] UPDATE: Autofarm is fixed!</font>",[[I'm finally out of hibernation to bring you guys the updated autofarm!
 
 What's new:
 - Fixed Autofarm
