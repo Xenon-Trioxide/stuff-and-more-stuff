@@ -170,9 +170,9 @@ end
 function DeployToGame()
     local screensize = workspace.CurrentCamera.ViewportSize
 	if lplayer.PlayerGui.ScreenGui.MainMenu.Bar1.Deploy.Text == "Play" then
-	    mousemoveabs(screensize.X*0.1,screensize.Y*0.03)
+	    mousemoveabs(screensize.X*0.1,screensize.Y*0.1)
 	    wait()
-	    mousemoveabs(screensize.X*0.1,screensize.Y*0.03+1)
+	    mousemoveabs(screensize.X*0.1,screensize.Y*0.1+1)
 	    mouse1click()
 	    wait(0.5)
     end
@@ -275,7 +275,15 @@ function main()
 
 	--main
 	local label = main:CreateLabel("<font size=\"48\">Welcome!</font>")
-	local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">UPDATE: ZAP is now fixed!</font>",[[So after 3 months of us causing chaos in Zombie Uprising, Brian (the creator) patched ZAP!
+    local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">[9/7/2024] UPDATE: Autofarm is fixed!</font>",[[So after 3 months of us causing chaos in Zombie Uprising, Brian (the creator) patched ZAP!
+
+What's new:
+- Fixed Autofarm
+
+Brian once again patched the autofarm by reworking the rocket launcher slot, but we easily fixed it lol.
+
+Happy Xploiting!]])
+	local label = main:CreateLabel("<font size=\"18\" color=\"#00FF00\" weight=\"heavy\">[??/10/2023] UPDATE: ZAP is now fixed!</font>",[[So after 3 months of us causing chaos in Zombie Uprising, Brian (the creator) patched ZAP!
 
 What's new:
 - Fixed Autofarm
@@ -288,6 +296,14 @@ Happy Xploiting!]])
 	local label = main:CreateLabel("<font size=\"18\">Introducing the <font weight=\"heavy\">Zombie Annihilation Protocol</font>!</font>", "The best GUI in Zombie Uprising! \nFeaturing: \n	- An autofarm <font size=\"5\">duh</font> \n	- Combining guns using <font color=\"#000032\">dark magic</font> \n	- Free skins \n	- Teapot?")
 	
 	--autofarm
+    if game.PlaceId == 9213934824 then
+        local label = autofarmtab:CreateLabel("<font color=\"#00FF00\" weight=\"heavy\">Autofarm supported!</font>")
+    else
+        local label = autofarmtab:CreateLabel("<font color=\"#FF0000\" weight=\"heavy\">AUTOFARM DOESN'T WORK IN THIS PLACE</font>","PLEASE PRESS THE BUTTON BELOW")
+        local tptosoundplace = autofarmtab:CreateButton("TP TO AUTOFARM PLACE (SELECT NORMAL MODE)", function()
+        game:GetService("TeleportService"):Teleport(9213934824, lplayer)
+        end)
+    end
 	local label = autofarmtab:CreateLabel("Autofarm","For general autofarm to work, <font color=\"#FFFF00\">you must toggle the farm first in menu!</font>")
 	local autopackage = autofarmtab:CreateToggle("Auto care package", false, function(on)
 		if on then
@@ -619,3 +635,4 @@ else
 	    main()
 	end
 end
+
