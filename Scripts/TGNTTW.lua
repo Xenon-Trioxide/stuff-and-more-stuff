@@ -5,12 +5,17 @@ local SERVICES = {
 	RUN_S = game:GetService("RunService"),
 	TELEPORT_S = game:GetService("TeleportService")
 }
+
 local quake = loadstring(game:HttpGet("https://raw.githubusercontent.com/idonthaveoneatm/Libraries/normal/quake/src"))()
 
 local plr = game.Players.LocalPlayer
-local games = {
+local games = { -- main game, name
 	["18320910606"] = "The Games",
-	["14970015233"] = "Watermelon GO"
+	["14970015233"] = "Watermelon GO",
+	["17584410630"] = "Arsenal"
+}
+local exception = { -- for game with a different event place instead of start place
+	["Arsenal"] = "286090429"
 }
 local Shines_EVENTS = {}
 local Silver_EVENTS = {}
@@ -21,8 +26,25 @@ function CheckMobile()
     else return true end
 end
 
+local FUNCTIONS = {}
+local numname = {"One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Zero"}
+function FUNCTIONS:GetInvSlot(itemname)
+	hotbar = game:GetService("CoreGui").RobloxGui.Backpack.Hotbar
+	for i,v in pairs(hotbar:GetChildren()) do
+		if v.ToolName.Text == itemname then
+			return numname[tonumber(v.Name)]
+		end
+	end
+end
+
+function FUNCTIONS:PressKey(keycode, delay)
+	SERVICES.VIM_S:SendKeyEvent(true, keycode, false, game)
+	wait(delay or .01)
+	SERVICES.VIM_S:SendKeyEvent(false, keycode, false, game)
+end
+
+
 function main()
-	print("load")
 	local window = quake:Window({
 		Title = "The Games: No Time To Waste",
 		isMobile = CheckMobile(),
@@ -83,8 +105,11 @@ function main()
 	
 	if games[tostring(game.PlaceId)] then
 		Games_T:Label("You are currently in "..games[tostring(game.PlaceId)].." (supported!)")
-	
-		local urlizedgamename = games[tostring(game.PlaceId)]:gsub(" ","%%20")
+
+		local urlizedgamename = games[tostring(game.PlaceId)]
+		if string.find(games[tostring(game.PlaceId)]," ") then
+			urlizedgamename = games[tostring(game.PlaceId)]:gsub(" ","%%20")
+		end
 		local gamefunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/Scripts/The%20Games/"..urlizedgamename..".lua"))()
 		--print(gamefunctions)
 	
@@ -93,16 +118,16 @@ function main()
 		-- Shines
 		local Shines_T = window:Tab({
 			Name = "Shines",
-			Image = "rbxassetid://16884179279"
+			Image = "rbxassetid://14738461299"
 		})
-		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENTS)
+		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENTS, FUNCTIONS)
 	
 		-- Silver
 		local Silver_T = window:Tab({
 			Name = "Silver",
-			Image = "rbxassetid://16884179279"
+			Image = "rbxassetid://14738461299"
 		})
-		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENTS)
+		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENTS, FUNCTIONS)
 	else
 		Games_T:Label("You are not in a supported game!")
 	end
@@ -112,7 +137,11 @@ function main()
 	local inversegames = {}
 	for i,v in pairs(games) do
 		table.insert(gamenames, v)
-		inversegames[v] = i
+		if exception[v] then
+			inversegames[v] = exception[v]
+		else
+			inversegames[v] = i
+		end
 	end
 	
 	Games_T:Dropdown({
@@ -132,7 +161,7 @@ function main()
 				Duration = 10
 			})
 	
-			SERVICES.TELEPORT_S:Teleport(tonumber(inversegames[selectedgame]), plr)
+			SERVICES.TELEPORT_S:Teleport(tonumber(startplaces[selectedgame]), plr)
 		end
 	})
 	
