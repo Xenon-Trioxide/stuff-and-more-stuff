@@ -9,8 +9,11 @@ local quake = loadstring(game:HttpGet("https://raw.githubusercontent.com/idontha
 
 local plr = game.Players.LocalPlayer
 local games = {
-	["18320910606"] = "The Games"
+	["18320910606"] = "The Games",
+	["14970015233"] = "Watermelon GO"
 }
+local Shines_EVENT = {}
+local Silver_EVENT = {}
 
 function CheckMobile()
     if game:GetService("UserInputService").MouseEnabled and not game:GetService("UserInputService").TouchEnabled then
@@ -38,71 +41,71 @@ function main()
 		},
 		KeyCode = Enum.KeyCode.RightAlt
 	})
-
+	
 	Home_T = window:Tab({
 		Name = "Home",
 		Image = "rbxassetid://6026568198"
 	})
-
+	
 	Games_T = window:Tab({
 		Name = "The hub",
 		Image = "rbxassetid://6034848748"
 	})
-
+	
 	Home_T:Label("Welcome to The Games event!")
 	Home_T:Paragraph({
 		Title = "[2/8/2024] Welcome to The Games event!",
 		Body = [[
 			
 			There's so many things to do in The Games event, but don't you think there's too many? In order to complete the event, you will need to collect 1,310 of these silver coins. If you were to collect all 60 silver coins per game, you would still need to visit 22 games out of the 50, and that is a lot.
-
+	
 			But Code_Xploit is here to save the day. Introducing The Games: No Time To Waste - a collection of exploits that will complete the event for you! Simply hop into a game and run the script, you will be done in no time!
-
+	
 			I will be actively working on adding more games for the duration of this event. Be sure to stay tuned and Happy Xploiting!
 		]]
 	})
 	Home_T:Paragraph({
 		Title = "Credits",
 		Body = [[
-
+	
 			Scripting: Code_Xploit
 			https://youtube.com/@xploitsds
-
+	
 			GUI: Quake by idonthaveoneatm (Github)
 			https://github.com/idonthaveoneatm/Libraries/blob/normal/quake
 		]]
 	})
-
+	
 	-- Games
 	Games_T:Label("Here you can teleport to supported games! More games will be added soon!")
-
-
+	
+	
 	if games[tostring(game.PlaceId)] then
 		Games_T:Label("You are currently in "..games[tostring(game.PlaceId)].." (supported!)")
-
+	
 		local urlizedgamename = games[tostring(game.PlaceId)]:gsub(" ","%%20")
 		local gamefunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/Scripts/The%20Games/"..urlizedgamename..".lua"))()
 		--print(gamefunctions)
-
+	
 		-- Main
-
+	
 		-- Shines
 		local Shines_T = window:Tab({
 			Name = "Shines",
 			Image = "rbxassetid://18704162324"
 		})
-		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES)
-
+		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENT)
+	
 		-- Silver
 		local Silver_T = window:Tab({
 			Name = "Silver",
 			Image = "rbxassetid://18669123540"
 		})
-		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES)
+		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENT)
 	else
 		Games_T:Label("You are not in a supported game!")
 	end
-
+	
 	local selectedgame = ""
 	local gamenames = {}
 	local inversegames = {}
@@ -110,7 +113,7 @@ function main()
 		table.insert(gamenames, v)
 		inversegames[v] = i
 	end
-
+	
 	Games_T:Dropdown({
 		Name = "Select supported game",
 		Items = gamenames,
@@ -127,10 +130,11 @@ function main()
 				Body = "You should be there soon!",
 				Duration = 10
 			})
-
+	
 			SERVICES.TELEPORT_S:Teleport(tonumber(inversegames[selectedgame]), plr)
 		end
 	})
+	
 end
 
 if nokey then
