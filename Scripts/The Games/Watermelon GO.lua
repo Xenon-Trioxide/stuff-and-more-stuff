@@ -13,13 +13,13 @@ function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
         for i,v in ipairs(plr.PlayerGui.MainUI:GetDescendants()) do
         	if string.find(v.Name,"FAKE_ITEM") and v.Visible then
             found = true
-            
-        		v.Parent = plr.PlayerGui.MainUI
-        		v.Size = UDim2.new(0.5, 0, 0.5, 0)
-        		v.Position = UDim2.new(0.5, 0, 0.5, 0)
-        		v.BackgroundTransparency = 0
-        		v.ZIndex = 10000000
+            v.Parent = plr.PlayerGui.MainUI
+            v.Size = UDim2.new(0.5, 0, 0.5, 0)
+            v.Position = UDim2.new(0.5, 0, 0.5, 0)
+            v.BackgroundTransparency = 0
+            v.ZIndex = 10000000
             v.Activated:Wait()
+            wait(2)
             v:Destroy()
         	end
         end
