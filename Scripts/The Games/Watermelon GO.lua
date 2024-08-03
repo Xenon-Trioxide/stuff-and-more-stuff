@@ -1,6 +1,6 @@
 local module = {}
 
-function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
+function module:LoadShines(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
   local toggle = false
   local found = false
 
@@ -35,7 +35,7 @@ function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
 
 end
 
-function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
+function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
   toggle = false
   
   tab:Label("Make sure you are in a match before enabling this!")
