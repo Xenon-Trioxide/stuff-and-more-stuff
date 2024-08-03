@@ -55,8 +55,8 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
           		end
           	end
           end)
-          EVENTS["ChildAdded2"] = workspace.Playspaces.Singleplayer.ActiveFruits.ChildAdded:Connect(function()
-          	for i,v in pairs(workspace.Playspaces.Singleplayer.ActiveFruits:GetChildren()) do
+          EVENTS["ChildAdded2"] = workspace.Playspaces.SinglePlayer.ActiveFruits.ChildAdded:Connect(function()
+          	for i,v in pairs(workspace.Playspaces.SinglePlayer.ActiveFruits:GetChildren()) do
           		if v:IsA("BasePart") then
           			v.CFrame = CFrame.new(-46.36000061035156, 33.966381072998047, 97.6836929321289)
           		end
