@@ -99,10 +99,10 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 			if plr.Backpack:FindFirstChild("Aura") then
 				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], .01)
 				wait(0.1)
-				plr.Character:PivotTo(workspace:FindFirstChild("HelperBot").HumanoidRootPart.CFrame)
+				plr.Character:PivotTo(workspace:FindFirstChild("DialogUsed",true).Parent.HumanoidRootPart.CFrame)
 				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], 1.2)
 			elseif plr.Character:FindFirstChild("Aura") then
-				plr.Character:PivotTo(workspace:FindFirstChild("HelperBot").HumanoidRootPart.CFrame)
+				plr.Character:PivotTo(workspace:FindFirstChild("DialogUsed",true).Parent.HumanoidRootPart.CFrame)
 				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], 1.2)
 			else
 				window:Notify({
