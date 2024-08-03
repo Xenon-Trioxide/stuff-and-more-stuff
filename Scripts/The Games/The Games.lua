@@ -1,6 +1,6 @@
 local module = {}
 
-function module:LoadShines(plr, window, tab, SERVICES)
+function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
   tab:Button({
 		Name = "Collect treasures",
 		Callback = function()
@@ -21,7 +21,7 @@ function module:LoadShines(plr, window, tab, SERVICES)
 
 end
 
-function module:LoadSilver(plr, window, tab, SERVICES)
+function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
 	  -- Quest coins
 	coinpos = {
 		CoilObby = CFrame.new(-777.6221313476562, 680.4069213867188, -1229.9202880859375),
