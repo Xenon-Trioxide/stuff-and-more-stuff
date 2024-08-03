@@ -1,41 +1,80 @@
 local keymodule = {}
 
-local _, library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/XploitSDS/XploitHub/main/XPloitHubLibrary.lua")))
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/idonthaveoneatm/Libraries/normal/quake/src"))()
 local http = game:GetService("HttpService")
 local keydata = game:HttpGet("https://dev-xploitsds.pantheonsite.io/wp-json/wp/v2/pages/164")
 local keyval = ""
 
+function CheckMobile()
+    if game:GetService("UserInputService").MouseEnabled and not game:GetService("UserInputService").TouchEnabled then
+        return false
+    else return true end
+end
+
+local test = false
+
 function keymodule:CheckKey()
     local keycorrect = false
-    if isfile("xploit-key.txt") and readfile("xploit-key.txt") == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then 
-        return true
+    if isfile("xploit-key.txt") and readfile("xploit-key.txt") == string.sub(http:JSONDecode(keydata).content.rendered,4,35) and not test then 
+		return true
     else
-        local keywindow = library:CreateWindow("Please insert key")
-        local keytab = keywindow:CreateTab("Key")
-        local keyinput = keytab:CreateTextbox("Insert key", function(val)
-            keyval = val
-        end)
-        local summit = keytab:CreateButton("Summit", function()
-            if keyval == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then
-                keycorrect = true
-                writefile("xploit-key.txt",keyval)
-                keywindow:Destroy()
-                
-            else
-          	    local keylabel = keytab:CreateLabel("Key invalid")
-            end
-        end)
-    local copybutton, copyelement = keytab:CreateButton("Copy link",function()
-    	setclipboard("https://link-target.net/854230/xploit-checkpoint-1")
-    end)
-    local urlbox, _, urlelement = keytab:CreateTextbox("Url (manual copy):",function()
-    end,url)
-    urlelement.ClearTextOnFocus = false
-    urlelement.Text = "https://link-target.net/854230/xploit-checkpoint-1"
+        local keywindow = library:Window({
+			Title = "Please enter key!",
+			isMobile = CheckMobile(),
+			Size = {
+				X = 550,
+				Y = 400
+			},
+			CustomTheme = { -- [OPTIONAL]
+				defaultTab = Color3.fromHex("ffb144"),
+				background = Color3.fromRGB(30,30,30),
+				secondaryBackground = Color3.fromRGB(35,35,35),
+				tertiaryBackground = Color3.fromRGB(25,25,25),
+				text = Color3.fromRGB(255,255,255),
+				image = Color3.fromRGB(225,225,225),
+				placeholder = Color3.fromRGB(225,225,225),
+				close = Color3.fromRGB(190, 100, 105)
+			},
+			KeyCode = Enum.KeyCode.RightAlt
+		})
+        local keytab = keywindow:Tab({
+			Name = "Key",
+			Image = "rbxassetid://6031082533"
+		})
+		local keyinput = keytab:TextBox({
+			Name = "Insert key",
+			Callback = function(val)
+				keyval = val
+			end
+		})
+		local submit = keytab:Button({
+			Name = "Submit",
+			Callback = function()
+				if keyval == string.sub(http:JSONDecode(keydata).content.rendered,4,35) then
+					keycorrect = true
+					writefile("xploit-key.txt",keyval)
+					for i,v in pairs(game.CoreGui:GetChildren()) do
+						if string.find(v.Name,"Please enter key!") then
+							v:Destroy()
+						end
+					end
+					
+				else
+					local keylabel = keytab:Label("Key invalid")
+				end
+			end
+		})
+		local copybutton = keytab:Button({
+			Name = "Copy link",
+			Callback = function()
+				setclipboard("https://link-target.net/854230/xploit-checkpoint-1")
+			end
+		})
     
         repeat wait() until keycorrect
-        print("works")
+        print("key correct")
         return true
     end
 end
+
 return keymodule
