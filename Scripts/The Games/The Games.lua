@@ -97,11 +97,13 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 		Name = "Show aura (BUY AURA FROM SHOP!)",
 		Callback = function()
 			if plr.Backpack:FindFirstChild("Aura") then
-				SERVICES.VIM_S:SendKeyEvent(true, Enum.KeyCode[FUNCTIONS:GetSlot("Aura")], false, workspace)
-				wait()
-				SERVICES.VIM_S:SendKeyEvent(false, Enum.KeyCode[FUNCTIONS:GetSlot("Aura")], false, workspace)	
+				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")])
+				wait(0.1)
+				plr.Character:PivotTo(workspace:FindFirstChild("HelperBot").HumanoidRootPart.CFrame)
+				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], 1.2)
 			elseif plr.Character:FindFirstChild("Aura") then
-				FUNCTIONS:GetSlot("Aura")
+				plr.Character:PivotTo(workspace:FindFirstChild("HelperBot").HumanoidRootPart.CFrame)
+				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], 1.2)
 			else
 				window:Notify({
 					Title = "You don't have aura!",
