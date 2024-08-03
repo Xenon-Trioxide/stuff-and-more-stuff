@@ -45,8 +45,8 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
       Callback = function(val)
         toggle = val
         if toggle then
-          workspace.Playspaces.Singleplayer.LocalBoxParts.LeftWall.CanCollide = false
-          workspace.Playspaces.Singleplayer.LocalBoxParts.RightWall.CanCollide = false
+          workspace.Playspaces.SinglePlayer.LocalBoxParts.LeftWall.CanCollide = false
+          workspace.Playspaces.SinglePlayer.LocalBoxParts.RightWall.CanCollide = false
           
           EVENTS["ChildAdded1"] = workspace.Playspaces.Duels.ActiveFruits.ChildAdded:Connect(function()
           	for i,v in pairs(workspace.Playspaces.Duels.ActiveFruits:GetChildren()) do
