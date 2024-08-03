@@ -1,6 +1,6 @@
 local module = {}
 
-function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
+function module:LoadShines(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
   tab:Button({
 		Name = "Collect treasures",
 		Callback = function()
@@ -21,7 +21,7 @@ function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
 
 end
 
-function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
+function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 	  -- Quest coins
 	coinpos = {
 		CoilObby = CFrame.new(-777.6221313476562, 680.4069213867188, -1229.9202880859375),
@@ -88,6 +88,26 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
 				scbutton.Activated:Once(function()
 					workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
 				end)
+			end
+		end
+	})
+
+	-- Show aura
+	tab:Button({
+		Name = "Show aura (BUY AURA FROM SHOP!)",
+		Callback = function()
+			if plr.Backpack:FindFirstChild("Aura") then
+				SERVICES.VIM_S:SendKeyEvent(true, Enum.KeyCode[FUNCTIONS:GetSlot("Aura")], false, workspace)
+				wait()
+				SERVICES.VIM_S:SendKeyEvent(false, Enum.KeyCode[FUNCTIONS:GetSlot("Aura")], false, workspace)	
+			elseif plr.Character:FindFirstChild("Aura") then
+				FUNCTIONS:GetSlot("Aura")
+			else
+				window:Notify({
+					Title = "You don't have aura!",
+					Body = "Go buy aura from shop!",
+					Duration = 10
+				})
 			end
 		end
 	})
