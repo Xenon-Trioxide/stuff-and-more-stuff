@@ -11,17 +11,17 @@ function module:LoadShines(plr, window, tab, SERVICES, EVENTS)
       toggle = val
       if toggle then repeat
         for i,v in ipairs(plr.PlayerGui.MainUI:GetDescendants()) do
-        	if string.find(v.Name,"FAKE_ITEM") and v.Visible then
-            found = true
-            v.Parent = plr.PlayerGui.MainUI
-            v.Size = UDim2.new(0.5, 0, 0.5, 0)
-            v.Position = UDim2.new(0.5, 0, 0.5, 0)
-            v.BackgroundTransparency = 0
-            v.ZIndex = 10000000
-            v.Activated:Wait()
-            wait(2)
-            v:Destroy()
-        	end
+            if string.find(v.Name,"FAKE_ITEM") and v.Visible then
+              found = true
+              v.Parent = plr.PlayerGui.MainUI
+              v.Size = UDim2.new(0.5, 0, 0.5, 0)
+              v.Position = UDim2.new(0.5, 0, 0.5, 0)
+              v.BackgroundTransparency = 0
+              v.ZIndex = 10000000
+              v.Activated:Wait()
+              wait(2)
+              v:Destroy()
+            end
         end
         if not found then
           toggle = false
@@ -51,14 +51,14 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS)
           EVENTS["ChildAdded1"] = workspace.Playspaces.Duels.ActiveFruits.ChildAdded:Connect(function()
           	for i,v in pairs(workspace.Playspaces.Duels.ActiveFruits:GetChildren()) do
           		if v:IsA("BasePart") then
-          			v.CFrame = CFrame.new(-46.36000061035156, 33.966381072998047, 97.6836929321289)
+          			v.CFrame = CFrame.new(-46.36000061035156, 11.983068466186523, -44.77533721923828)
           		end
           	end
           end)
           EVENTS["ChildAdded2"] = workspace.Playspaces.SinglePlayer.ActiveFruits.ChildAdded:Connect(function()
           	for i,v in pairs(workspace.Playspaces.SinglePlayer.ActiveFruits:GetChildren()) do
           		if v:IsA("BasePart") then
-          			v.CFrame = CFrame.new(-46.36000061035156, 33.966381072998047, 97.6836929321289)
+          			v.CFrame = CFrame.new(-46.36000061035156, 11.983068466186523, -44.77533721923828)
           		end
           	end
           end)
