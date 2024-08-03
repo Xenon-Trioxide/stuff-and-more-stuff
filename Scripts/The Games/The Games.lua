@@ -22,14 +22,14 @@ function module:LoadShines(plr, window, tab, SERVICES)
 end
 
 function module:LoadSilver(plr, window, tab, SERVICES)
-  -- Quest coins
+	  -- Quest coins
 	coinpos = {
 		CoilObby = CFrame.new(-777.6221313476562, 680.4069213867188, -1229.9202880859375),
 		OnlyUpObby = CFrame.new(-1366.342041015625, 363.0050354003906, 421.07574462890625),
 		SizeObby = CFrame.new(-1123.864501953125, 191.3951873779297, -270.8232421875),
 	}
-
-	Silver_T:Button({
+	
+	tab:Button({
 		Name = "Collect quest coins",
 		Callback = function()
 			for i,v in pairs(workspace.QuestCoins:GetChildren()) do
@@ -45,7 +45,7 @@ function module:LoadSilver(plr, window, tab, SERVICES)
 			end
 		end
 	})
-
+	
 	-- Selfie
 	teamleaders = {
 		["Angry Canary"] = CFrame.new(-569.6300048828125, 68.69573974609375, -187.701904296875),
@@ -61,29 +61,29 @@ function module:LoadSilver(plr, window, tab, SERVICES)
 			Duration = 10
 		})
 	end
-
-	Silver_T:Button({
+	
+	tab:Button({
 		Name = "Take selfie",
 		Callback = function()
 			if plr.Team then
 				local leadercf = teamleaders[plr.Team.Name]
 				plr.Character:PivotTo(leadercf * CFrame.new(0,0,-5))
-
+	
 				workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 				workspace.CurrentCamera.CFrame = CFrame.new((leadercf * CFrame.new(0,0,-15)).Position, leadercf.Position)
-
+	
 				if not plr.Character:FindFirstChild("Camera") then
 					SERVICES.VIM_S:SendKeyEvent(true, Enum.KeyCode.One, false, workspace)
 					wait()
 					SERVICES.VIM_S:SendKeyEvent(false, Enum.KeyCode.One, false, workspace)
 				end
-
+	
 				window:Notify({
 					Title = "Press the top button",
 					Body = "and save the image",
 					Duration = 10
 				})
-
+	
 				local scbutton = plr.PlayerGui.PhotoMode.Toggles.Screenshot
 				scbutton.Activated:Once(function()
 					workspace.CurrentCamera.CameraType = Enum.CameraType.Custom
