@@ -97,7 +97,7 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 		Name = "Show aura (BUY AURA FROM SHOP!)",
 		Callback = function()
 			if plr.Backpack:FindFirstChild("Aura") then
-				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")])
+				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], .01)
 				wait(0.1)
 				plr.Character:PivotTo(workspace:FindFirstChild("HelperBot").HumanoidRootPart.CFrame)
 				FUNCTIONS:PressKey(Enum.KeyCode[FUNCTIONS:GetInvSlot("Aura")], 1.2)
