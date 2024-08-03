@@ -1,4 +1,4 @@
-local nokey = true --Change this to true to remove key system
+local nokey = false --Change this to true to remove key system
 
 local SERVICES = {
 	VIM_S = game:GetService("VirtualInputManager"),
