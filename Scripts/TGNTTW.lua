@@ -1,4 +1,4 @@
-local nokey = false --Change this to true to remove key system
+local nokey = true --Change this to true to remove key system
 
 local SERVICES = {
 	VIM_S = game:GetService("VirtualInputManager"),
@@ -12,8 +12,8 @@ local games = {
 	["18320910606"] = "The Games",
 	["14970015233"] = "Watermelon GO"
 }
-local Shines_EVENT = {}
-local Silver_EVENT = {}
+local Shines_EVENTS = {}
+local Silver_EVENTS = {}
 
 function CheckMobile()
     if game:GetService("UserInputService").MouseEnabled and not game:GetService("UserInputService").TouchEnabled then
@@ -22,6 +22,7 @@ function CheckMobile()
 end
 
 function main()
+	print("load")
 	local window = quake:Window({
 		Title = "The Games: No Time To Waste",
 		isMobile = CheckMobile(),
@@ -92,16 +93,16 @@ function main()
 		-- Shines
 		local Shines_T = window:Tab({
 			Name = "Shines",
-			Image = "rbxassetid://18704162324"
+			Image = "rbxassetid://16884179279"
 		})
-		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENT)
+		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENTS)
 	
 		-- Silver
 		local Silver_T = window:Tab({
 			Name = "Silver",
-			Image = "rbxassetid://18669123540"
+			Image = "rbxassetid://16884179279"
 		})
-		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENT)
+		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENTS)
 	else
 		Games_T:Label("You are not in a supported game!")
 	end
@@ -135,6 +136,20 @@ function main()
 		end
 	})
 	
+	for i,v in pairs(game.CoreGui:GetChildren()) do
+		if string.find(v.Name,"The Games") then
+			v.Destroying:Connect(function()
+				for i,v in pairs(Shines_EVENTS) do
+					v:Disconnect()
+				end
+				for i,v in pairs(Silver_EVENTS) do
+					v:Disconnect()
+				end
+				print("done disconnecting events")
+			end)
+		end
+	end
+
 end
 
 if nokey then
