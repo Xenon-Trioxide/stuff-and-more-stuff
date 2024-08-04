@@ -112,7 +112,7 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 				})
 			end
 		end
-	}),
+	})
 
 	-- WackAMole
 	tab:Button({
