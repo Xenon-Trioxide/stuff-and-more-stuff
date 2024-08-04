@@ -9,13 +9,10 @@ local SERVICES = {
 local quake = loadstring(game:HttpGet("https://raw.githubusercontent.com/idonthaveoneatm/Libraries/normal/quake/src"))()
 
 local plr = game.Players.LocalPlayer
-local games = { -- main game, name
-	["18320910606"] = "The Games",
-	["14970015233"] = "Watermelon GO",
-	["17584410630"] = "Arsenal"
-}
-local exception = { -- for game with a different event place instead of start place
-	["Arsenal"] = "286090429"
+local games = { -- gameid = name, startplaceid
+	["6211067578"] = {"The Games","18320910606"},
+	["5156590883"] = {"Watermelon GO","14970015233"},
+	["111958650"] = {"Arsenal", "286090429"},
 }
 local Shines_EVENTS = {}
 local Silver_EVENTS = {}
@@ -108,12 +105,12 @@ function main()
 	Games_T:Label("Here you can teleport to supported games! More games will be added soon!")
 	
 	
-	if games[tostring(game.PlaceId)] then
-		Games_T:Label("You are currently in "..games[tostring(game.PlaceId)].." (supported!)")
+	if games[tostring(game.GameId)] then
+		Games_T:Label("You are currently in "..games[tostring(game.GameId)][1].." (supported!)")
 
-		local urlizedgamename = games[tostring(game.PlaceId)]
-		if string.find(games[tostring(game.PlaceId)]," ") then
-			urlizedgamename = games[tostring(game.PlaceId)]:gsub(" ","%%20")
+		local urlizedgamename = games[tostring(game.GameId)][1]
+		if string.find(games[tostring(game.GameId)][1]," ") then
+			urlizedgamename = games[tostring(game.GameId)][1]:gsub(" ","%%20")
 		end
 		local gamefunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/Scripts/The%20Games/"..urlizedgamename..".lua"))()
 		--print(gamefunctions)
@@ -141,12 +138,8 @@ function main()
 	local gamenames = {}
 	local inversegames = {}
 	for i,v in pairs(games) do
-		table.insert(gamenames, v)
-		if exception[v] then
-			inversegames[v] = exception[v]
-		else
-			inversegames[v] = i
-		end
+		table.insert(gamenames, v[1])
+		inversegames[v[1]] = v[2]
 	end
 	
 	Games_T:Dropdown({
@@ -166,7 +159,7 @@ function main()
 				Duration = 10
 			})
 	
-			SERVICES.TELEPORT_S:Teleport(tonumber(startplaces[selectedgame]), plr)
+			SERVICES.TELEPORT_S:Teleport(tonumber(inversegames[selectedgame]), plr)
 		end
 	})
 	
