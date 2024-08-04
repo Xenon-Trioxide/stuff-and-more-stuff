@@ -104,11 +104,11 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 					if chunk then
 						local target = workspace.TheGames.Targets:FindFirstChild("Target")
 						local platform = Instance.new("Part",workspace)
-						platform.CFrame = target.Visual.CFrame * CFrame.new(0,-5,10)
+						platform.CFrame = target.Visual.CFrame * CFrame.new(0,-5,-10)
 						platform.Size = Vector3.new(10,2,10)
 						platform.Anchored = true
 						
-						plr.Character:PivotTo(target.Visual.CFrame * CFrame.new(0,0,10))
+						plr.Character:PivotTo(target.Visual.CFrame * CFrame.new(0,0,-10) * CFrame.Angles(0,math.rad(180),0))
 						wait(1)
 						remoteevents.Throw:FireServer()
 						
