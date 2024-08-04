@@ -77,11 +77,22 @@ local function main()
 	})
 	
 	Home_T:Label("Welcome to The Games event!")
+	
 	Home_T:Paragraph({
-		Title = "[2/8/2024] Welcome to The Games event!",
+		Title = "[5/8/2024] Added Horse Life and Eat the World!",
 		Body = [[
 			
-			There's so many things to do in The Games event, but don't you think there's too many? In order to complete the event, you will need to collect 1,310 of these silver coins. If you were to collect all 60 silver coins per game, you would still need to visit 22 games out of the 50, and that is a lot.
+			As requested by my viewer @SoloP0V, Horse Life along with Eat the World has been added to the collection!
+
+			You can request a game (that is a part of the event) to be added in a future update in the comment section in any of my videos!
+		]]
+	})
+	
+	Home_T:Paragraph({
+		Title = "[4/8/2024] Welcome to The Games event!",
+		Body = [[
+			
+			There are so many things to do in The Games event, but don’t you think there’s too many? In order to complete the event, you will need to collect 370 silver coins, which means you have to complete 6+ games!
 	
 			But Code_Xploit is here to save the day. Introducing The Games: No Time To Waste - a collection of exploits that will complete the event for you! Simply hop into a game and run the script, you will be done in no time!
 
