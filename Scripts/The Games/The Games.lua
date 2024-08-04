@@ -112,6 +112,52 @@ function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 				})
 			end
 		end
+	}),
+
+	-- WackAMole
+	tab:Button({
+		Name = "Wack moles",
+		Callback = function()
+			local slot = FUNCTIONS:GetInvSlot("Size Manipulator") 
+			if slot then
+				if plr.Backpack:FindFirstChild("Size Manipulator") then
+					FUNCTIONS:PressKey(Enum.KeyCode[slot], 0.1)
+				end
+
+				if plr.Character.HumanoidRootPart.Size.X < 3 then
+					window:Notify({
+						Title = "Change your size to large",
+						Body = "To start the script!",
+						Duration = 10
+					})
+
+					repeat wait() until plr.Character.HumanoidRootPart.Size.X > 3
+				end
+
+				plr.Character:PivotTo(workspace.WhackAMole.Center.CFrame * CFrame.new(0,20,0))
+				wait(2)
+				EVENTS["MoleAdded"] = Workspace.ChildAdded:Connect(function(child)
+					if child:IsA("BasePart") and child.Name == "Mole" then
+						wait(0.2)
+						plr.Character:PivotTo(child.CFrame * CFrame.new(0,4,0))
+					end 
+				end)
+				wait(5)
+				repeat wait() until workspace.WhackAMole:FindFirstChild("Hole").Size.X <= 0.2
+				print("done")
+				if EVENTS["MoleAdded"] then EVENTS["MoleAdded"]:Disconnect() end
+				if workspace.QuestCoins:FindFirstChild("WhackAMole") then
+					plr.Character:PivotTo(workspace.QuestCoins.WhackAMole.CFrame)
+					FUNCTIONS:PressKey(Enum.KeyCode.E,1.2)
+				end
+			else
+				window:Notify({
+					Title = "You don't have size manipulator!",
+					Body = "Go buy size manipulator from shop!",
+					Duration = 10
+				})
+			end
+		end
 	})
 end
 
