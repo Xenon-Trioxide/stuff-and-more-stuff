@@ -1,7 +1,7 @@
 local module = {}
 
 function module:LoadShines(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
-	if game.PlaceId == "17584410630" then
+	if game.PlaceId == 17584410630 then
 		tab:Button({
 			Name = "Collect Shines",
 			Callback = function()
@@ -19,7 +19,7 @@ function module:LoadShines(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
 end
 
 function module:LoadSilver(plr, window, tab, SERVICES, EVENTS, FUNCTIONS)
-	if game.PlaceId == "17584410630" then
+	if game.PlaceId == 17584410630 then
 		local bigheadtoggle = false
 		local speed = 22.4
 		local oldcf = nil
