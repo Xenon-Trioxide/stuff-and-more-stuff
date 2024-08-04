@@ -77,7 +77,7 @@ function main()
 		Title = "[2/8/2024] Welcome to The Games event!",
 		Body = [[
 			
-			There's so many things to do in The Games event, but don't you think there's too many? In order to complete the event, you will need to collect 1,310 of these silver coins. If you were to collect all 60 silver coins per game, you would still need to visit 22 games out of the 50, and that is a lot.
+			There's so many things to do in The Games event, but don't you think there's too many? In order to complete the event, you will need to collect 370 silver coins, which means you will need to complete 6+ games!.
 	
 			But Code_Xploit is here to save the day. Introducing The Games: No Time To Waste - a collection of exploits that will complete the event for you! Simply hop into a game and run the script, you will be done in no time!
 
