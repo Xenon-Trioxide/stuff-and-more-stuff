@@ -13,11 +13,14 @@ local games = { -- gameid = name, startplaceid
 	["6211067578"] = {"The Games","18320910606"},
 	["5156590883"] = {"Watermelon GO","14970015233"},
 	["111958650"] = {"Arsenal", "286090429"},
+	["5422546686"] = {"Horse Life", "15696848933"},
+	["5677613211"] = {"Eat the World", "16480898254"}
+
 }
 local Shines_EVENTS = {}
 local Silver_EVENTS = {}
 
-function CheckMobile()
+local function CheckMobile()
     if game:GetService("UserInputService").MouseEnabled and not game:GetService("UserInputService").TouchEnabled then
         return false
     else return true end
@@ -32,6 +35,7 @@ function FUNCTIONS:GetInvSlot(itemname)
 			return numname[tonumber(v.Name)]
 		end
 	end
+	return nil
 end
 
 function FUNCTIONS:PressKey(keycode, delay)
@@ -41,7 +45,7 @@ function FUNCTIONS:PressKey(keycode, delay)
 end
 
 
-function main()
+local function main()
 	local window = quake:Window({
 		Title = "The Games: No Time To Waste",
 		isMobile = CheckMobile(),
@@ -77,7 +81,7 @@ function main()
 		Title = "[2/8/2024] Welcome to The Games event!",
 		Body = [[
 			
-			There are so many things to do in The Games event, but don’t you think there’s too many? In order to complete the event, you will need to collect 370 silver coins, which means you have to complete 6+ games!
+			There's so many things to do in The Games event, but don't you think there's too many? In order to complete the event, you will need to collect 1,310 of these silver coins. If you were to collect all 60 silver coins per game, you would still need to visit 22 games out of the 50, and that is a lot.
 	
 			But Code_Xploit is here to save the day. Introducing The Games: No Time To Waste - a collection of exploits that will complete the event for you! Simply hop into a game and run the script, you will be done in no time!
 
@@ -112,7 +116,9 @@ function main()
 		if string.find(games[tostring(game.GameId)][1]," ") then
 			urlizedgamename = games[tostring(game.GameId)][1]:gsub(" ","%%20")
 		end
+		print(urlizedgamename)
 		local gamefunctions = loadstring(game:HttpGet("https://raw.githubusercontent.com/Xenon-Trioxide/stuff-and-more-stuff/main/Scripts/The%20Games/"..urlizedgamename..".lua"))()
+		print("got functions")
 		--print(gamefunctions)
 	
 		-- Main
@@ -123,6 +129,7 @@ function main()
 			Image = "rbxassetid://14738461299"
 		})
 		gamefunctions:LoadShines(plr, window, Shines_T, SERVICES, Shines_EVENTS, FUNCTIONS)
+		print("Load shines successful")
 	
 		-- Silver
 		local Silver_T = window:Tab({
@@ -130,6 +137,7 @@ function main()
 			Image = "rbxassetid://14738461299"
 		})
 		gamefunctions:LoadSilver(plr, window, Silver_T, SERVICES, Silver_EVENTS, FUNCTIONS)
+		print("Load silver successful")
 	else
 		Games_T:Label("You are not in a supported game!")
 	end
