@@ -67,7 +67,7 @@ function keymodule:CheckKey()
 		local copybutton = keytab:Button({
 			Name = "Copy link",
 			Callback = function()
-				setclipboard("https://link-target.net/854230/xploit-checkpoint-1")
+				setclipboard("https://lootdest.org/s?00efc826")
 			end
 		})
     
